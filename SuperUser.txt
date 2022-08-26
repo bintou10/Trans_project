@@ -1,0 +1,8 @@
+SuperUser:
+name : specialiste
+password :2345
+email:ngbtening@ept.sn
+
+Objectif du jour
+Mercredi 7 jours
+
