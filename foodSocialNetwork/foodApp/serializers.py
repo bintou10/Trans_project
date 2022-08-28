@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from .models import  Specialiste,Ingredient,Plat,Pays
+from .models import  Specialiste,Ingredient,Plat,Pays,Publication
 
 
 
@@ -29,6 +29,13 @@ class plat_image_serializer(serializers.ModelSerializer):
     class Meta:
         model = Plat
         fields = ('photo',)
+
+class publications_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Publication
+        fields = "__all__"
+
+
 
 
 

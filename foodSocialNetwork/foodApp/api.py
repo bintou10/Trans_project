@@ -1,12 +1,11 @@
-from .serializers import SpecialisteSerializer,plat_image_serializer,IngredientSerializer,PlatSerializer,PaysSerializer
-
+from .serializers import *
 from rest_framework.exceptions import APIException
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.parsers import FileUploadParser
 from rest_framework import status
-from .models import Specialiste,Ingredient,Plat,Pays
+from .models import *
 
 
 class SpecialisteLoginApi(APIView):
@@ -71,6 +70,35 @@ def view_photos_plats(request):
         if ser.is_valid():
             ser.save()
         return Response(ser.data)
+
+@api_view(["GET"])
+def view_api_publication_A_valider(request):
+    queryset = Publication.objects.all().filter(valide=0)
+    ser = publications_serializer(queryset, many = True)
+    return Response(ser.data)
+
+@api_view(["POST"])
+def view_api_publication_valide(request):
+    data = request.data
+    new_publication = Publication.objects.create(texte=data['texte'],photo=data['photo'],video=data['video'],heure_publication=data['heure_publication'],valide=1)
+    user = Utilisateur.objects.get(id=data['user'])
+    new_publication.user.add(user)
+    ser = plat_image_serializer(data = new_publication)
+    if ser.is_valid():
+        ser.save()
+    return Response(ser.data)
+
+@api_view(["POST"])
+def view_api_publication_invalide(request):
+    data = request.data
+    new_publication = Publication.objects.create(texte=data['texte'],photo=data['photo'],video=data['video'],heure_publication=data['heure_publication'],valide=0)
+    user = Utilisateur.objects.get(id=data['user'])
+    new_publication.user.add(user)
+    ser = plat_image_serializer(data = new_publication)
+    if ser.is_valid():
+        ser.save()
+    return Response(ser.data)
+
 
 
 

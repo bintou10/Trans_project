@@ -65,6 +65,24 @@ class Plat(models.Model):
         verbose_name = "Plat"
         verbose_name_plural = "Plats" 
 
+class Publication(models.Model):
+    
+    texte = models.CharField(max_length = 300)
+    photo = models.ImageField()
+    video = models.FileField()
+    heure_publication = models.DateTimeField(auto_now_add=False)
+    user = models.ForeignKey (Utilisateur,on_delete=models.CASCADE)
+    valide =models.BooleanField(null=True)
+
+    def __str__(self) -> str:
+        return f"{self.Nom} {self.Description}"
+
+    class Meta:
+        verbose_name = "Publication"
+        verbose_name_plural = "Publications" 
+
+
+
 
 
 
