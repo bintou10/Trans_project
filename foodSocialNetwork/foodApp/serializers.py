@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from .models import  Specialiste,Ingredient,Plat,Pays,Publication
+from .models import  Tweets,Specialiste,Ingredient,Plat,Pays,Publication
 
 
 
@@ -34,6 +34,21 @@ class publications_serializer(serializers.ModelSerializer):
     class Meta:
         model = Publication
         fields = "__all__"
+    
+
+class TweetSerializer(serializers.ModelSerializer):
+    tweep = serializers.StringRelatedField()
+
+
+    class Meta:
+        model = Tweets
+        fields = ['id', 'texts', 'file_content', 'date_posted', 'tweep','valid']
+        extra_kwargs = {
+            "file_content": {
+                "required": False,
+            }
+        }
+   
 
 
 

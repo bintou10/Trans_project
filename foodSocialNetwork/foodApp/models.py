@@ -82,6 +82,28 @@ class Publication(models.Model):
         verbose_name_plural = "Publications" 
 
 
+class TweetFile(models.Model):
+    tweep =  models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
+    media = models.FileField(upload_to='images')
+
+    def __str__(self):
+        return f"{self.tweep.username}"
+
+
+class Tweets(models.Model):
+    texts = models.TextField()
+    file_content = models.ManyToManyField(TweetFile, related_name='file_content', blank=True)
+    date_posted = models.DateTimeField(auto_now_add=True)
+    tweep = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
+    valid = models.BooleanField(null=True)
+    class Meta:
+
+        verbose_name_plural = 'Tweets'
+
+    def __str__(self):
+        return f"{self.texts}"
+
+
 
 
 
