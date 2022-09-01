@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from .models import  Tweets,Specialiste,Ingredient,Plat,Pays,Publication
+from .models import  Tweets,Specialiste,Ingredient,Plat,Pays,Publication,TweetFile
 
 
 
@@ -35,6 +35,10 @@ class publications_serializer(serializers.ModelSerializer):
         model = Publication
         fields = "__all__"
     
+class TweetFileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TweetFile
+        fields = "__all__"
 
 class TweetSerializer(serializers.ModelSerializer):
     tweep = serializers.StringRelatedField()

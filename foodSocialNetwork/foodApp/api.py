@@ -8,8 +8,7 @@ from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.decorators import api_view, permission_classes, parser_classes
 from rest_framework.permissions import IsAuthenticated
-
-
+import pickle
 
 
 
@@ -188,12 +187,30 @@ class view_api_publication_invalide(APIView):
 
 @api_view(["GET"])
 def view_api_publication_A_valider(request):
+    liste = []
     queryset = Tweets.objects.all().filter(valid=False)
+    for i in queryset.iterator():
+        for j in list(i.file_content.all()):
+            liste.append(j.media.name)
+    print(liste)
     ser = TweetSerializer(queryset, many = True)
     return Response(ser.data)
 
 
+class view_tweetFile(APIView):
+    serializer = TweetFileSerializer
+    def get_all_querysets(self,request):
+        tweetFiles = TweetFile.objects.all()
+        ser = TweetFileSerializer(tweetFiles, many = True)
+        return Response(ser.data)
 
+
+    def get(self, request, *args, **kwargs):    
+        id = request.query_params["id"]
+        if id != None:
+            tweetFile = TweetFile.objects.all().filter(id=id)
+            serializer = TweetFileSerializer(tweetFile, many = True)
+            return Response(serializer.data)
 
 
 

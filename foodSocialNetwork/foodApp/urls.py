@@ -13,5 +13,7 @@ urlpatterns = [
     path('pub_valide/', view_api_publication_valide.as_view()),
     path('pub_invalide/', view_api_publication_invalide.as_view()),
     path('create_tweet/', create_tweet),
+    path('tweetFile/',  view_tweetFile.as_view()),
+   
     
 ] 

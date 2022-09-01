@@ -1,4 +1,5 @@
 from django.db import models
+import pickle
 
 # Create your models here.
 from django.db import models
@@ -87,7 +88,7 @@ class TweetFile(models.Model):
     media = models.FileField(upload_to='images')
 
     def __str__(self):
-        return f"{self.tweep.username}"
+        return f"{self.tweep}"
 
 
 class Tweets(models.Model):
