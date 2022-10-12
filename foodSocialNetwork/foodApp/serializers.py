@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from .models import  Tweets,Specialiste,Ingredient,Plat,Pays,Publication,TweetFile
+from .models import  photoPlat,Utilisateur,Tweets,Specialiste,Ingredient,Plat,Pays,Publication,TweetFile
 
 
 
@@ -9,6 +9,17 @@ class SpecialisteSerializer(serializers.ModelSerializer):
     class Meta:
         model =  Specialiste
         fields = ( 'id','first_name', 'last_name','username' ,'nationalite' , 'pays','photo' )
+
+class UtilisateurSerializer(serializers.ModelSerializer):
+    class Meta:
+        model =  Utilisateur
+        fields = "__all__"
+
+class dishPicturesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = photoPlat
+        fields = "__all__"
+
 
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:

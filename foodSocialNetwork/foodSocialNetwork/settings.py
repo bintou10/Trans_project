@@ -29,6 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -81,11 +83,11 @@ WSGI_APPLICATION = 'foodSocialNetwork.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'food_db',
+        'NAME': 'food_db2',
         'USER': 'food_specialiste',
         'PASSWORD': '09876',
         'HOST': 'localhost',
-        'PORT': '5432'
+        'PORT': '5432',
     }
 }
 
@@ -122,9 +124,11 @@ USE_TZ = True
 
 CORS_ALLOWED_ORIGINS = [
 
-"http://localhost:58602",
+"http://localhost:4200",
 
 ]
+
+
 
 
 AUTH_USER_MODEL = 'foodApp.Utilisateur'

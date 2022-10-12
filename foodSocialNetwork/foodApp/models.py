@@ -88,8 +88,10 @@ class TweetFile(models.Model):
     media = models.FileField(upload_to='images')
 
     def __str__(self):
-        return f"{self.tweep}"
-
+        return f"{self.tweep.username}"
+    
+class photoPlat(models.Model):
+    image = models.ImageField()
 
 class Tweets(models.Model):
     texts = models.TextField()
